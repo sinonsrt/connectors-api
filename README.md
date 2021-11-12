@@ -28,7 +28,7 @@
 
 ### 3° - Para iniciar o servidor (YARN ou NPM)
 - start
-### Exemplo: yarn start ou npm start 
+#### Exemplo: yarn start ou npm start 
 
 ### Para ter acesso as requisições de users e connectores é nescessário passar pela autenticação, utilizando o usuário padrão que foi criado através do script para população de Users
 - email: godevapi@devapi.com
