@@ -47,4 +47,11 @@ export class UsersService {
       })
       .exec();
   }
+
+  //seed
+  async add(data: any) {
+    console.log('user added:', data);
+    const user = await this.userModel.create(data);
+    user.save();
+  }
 }

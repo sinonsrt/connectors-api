@@ -7,6 +7,7 @@ import {
   Param,
   Delete,
   UseGuards,
+  Query,
 } from '@nestjs/common';
 import { ConnectorsService } from './connectors.service';
 import { CreateConnectorDto } from './dto/create-connector.dto';
@@ -25,8 +26,18 @@ export class ConnectorsController {
 
   @UseGuards(JwtAuthGuard)
   @Get()
-  findAll() {
-    return this.connectorsService.findAll();
+  findAll(
+    @Query('name') name: string,
+    @Query('category') category: string,
+    @Query('type') type: string,
+    @Query('privacy') privacy: string,
+  ) {
+    const connectors = this.connectorsService.findAll();
+    if (name) connectors.where('name', name);
+    if (category) connectors.where('category', category);
+    if (type) connectors.where('type', type);
+    if (privacy) connectors.where('privacy', privacy);
+    return connectors;
   }
 
   @UseGuards(JwtAuthGuard)
