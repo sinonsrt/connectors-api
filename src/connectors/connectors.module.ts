@@ -3,6 +3,7 @@ import { ConnectorsService } from './connectors.service';
 import { ConnectorsController } from './connectors.controller';
 import { MongooseModule } from '@nestjs/mongoose';
 import { Connector, ConnectorSchema } from './entities/connector.entity';
+import { ConnectorsSeed } from './seeds/connectors.seed';
 
 @Module({
   imports: [
@@ -11,6 +12,6 @@ import { Connector, ConnectorSchema } from './entities/connector.entity';
     ]),
   ],
   controllers: [ConnectorsController],
-  providers: [ConnectorsService],
+  providers: [ConnectorsService, ConnectorsSeed],
 })
 export class ConnectorsModule {}
