@@ -13,6 +13,12 @@ export class User {
 
   @Prop()
   password: string;
+
+  constructor(user?: Partial<User>) {
+    this.name = user.name;
+    this.email = user.email;
+    this.password = user.password;
+  }
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);

@@ -30,11 +30,13 @@
 - start
 #### Exemplo: yarn start ou npm start 
 
-### Para ter acesso as requisições de users e connectores é nescessário passar pela autenticação, utilizando o usuário padrão que foi criado através do script para população de Users
+### Para ter acesso as requisições de users e connectores é necessário passar pela autenticação, utilizando o usuário padrão que foi criado através do script para a criação de um usuário padrão
 - email: godevapi@devapi.com
 - senha:1234567
 
-### Após o login é nescessário pegar o token obtido através da rota *Login* e enviar por Authorization do tipo Bearer Token ao realizar requisições para as outras rotas.
+#### Após o login é nescessário pegar o token obtido através da rota *Login* e enviar por Authorization do tipo Bearer Token ao realizar requisições para as outras rotas.
 
+## Testes automatizados(controllers) - utilize o script a seguir para realizar o teste automatizado
+- npm run test
 
 ## Lucas Marchiori
