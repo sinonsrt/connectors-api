@@ -29,6 +29,9 @@ export class Connector {
   @Prop()
   status: string;
 
+  @Prop({ default: null })
+  deleted_at: Date;
+
   constructor(connector?: Partial<Connector>) {
     this.name = connector.name;
     this.type = connector.type;
@@ -38,6 +41,7 @@ export class Connector {
     this.category = connector.category;
     this.description = connector.description;
     this.status = connector.status;
+    this.deleted_at = connector.deleted_at;
   }
 }
 

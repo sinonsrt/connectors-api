@@ -14,10 +14,14 @@ export class User {
   @Prop()
   password: string;
 
+  @Prop({ default: null })
+  deleted_at: Date;
+
   constructor(user?: Partial<User>) {
     this.name = user.name;
     this.email = user.email;
     this.password = user.password;
+    this.deleted_at = user.deleted_at;
   }
 }
 

@@ -17,8 +17,13 @@ export class ConnectorsService {
     return connector.save();
   }
 
-  findAll() {
-    return this.connectorModel.find();
+  findAll(name: string, category: string, type: string, privacy: string) {
+    const connectors = this.connectorModel.find().where('deleted_at', null);
+    if (name) connectors.where('name', name);
+    if (category) connectors.where('category', category);
+    if (type) connectors.where('type', type);
+    if (privacy) connectors.where('privacy', privacy);
+    return connectors;
   }
 
   findOne(id: string) {
