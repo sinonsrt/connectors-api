@@ -50,8 +50,12 @@ export class UsersService {
 
   //seed
   async add(data: any) {
-    console.log('user added:', data);
-    const user = await this.userModel.create(data);
-    user.save();
+    try {
+      console.log('User added:', data);
+      const user = await this.userModel.create(data);
+      await user.save();
+    } catch (error) {
+      console.log(error);
+    }
   }
 }
