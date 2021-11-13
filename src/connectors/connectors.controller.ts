@@ -32,12 +32,7 @@ export class ConnectorsController {
     @Query('type') type: string,
     @Query('privacy') privacy: string,
   ) {
-    const connectors = this.connectorsService.findAll();
-    if (name) connectors.where('name', name);
-    if (category) connectors.where('category', category);
-    if (type) connectors.where('type', type);
-    if (privacy) connectors.where('privacy', privacy);
-    return connectors;
+    return this.connectorsService.findAll(name, category, type, privacy);
   }
 
   @UseGuards(JwtAuthGuard)
@@ -58,6 +53,6 @@ export class ConnectorsController {
   @UseGuards(JwtAuthGuard)
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.connectorsService.remove(id);
+    return this.connectorsService.update(id, { deleted_at: new Date() });
   }
 }

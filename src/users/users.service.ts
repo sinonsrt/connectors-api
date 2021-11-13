@@ -15,7 +15,7 @@ export class UsersService {
   }
 
   findAll() {
-    return this.userModel.find();
+    return this.userModel.find().where('deleted_at', null);
   }
 
   findOne(id: string) {
@@ -38,16 +38,28 @@ export class UsersService {
     );
   }
 
-  async getByEmail(email: string) {
-    return await this.userModel.findOne({ email }).exec();
+  remove(id: string) {
+    return this.userModel.findByIdAndUpdate(
+      {
+        _id: id,
+      },
+      {
+        $set: {
+          deleted_at: new Date(),
+        },
+      },
+      {
+        new: true,
+      },
+    );
+    // .deleteOne({
+    //   _id: id,
+    // })
+    // .exec();
   }
 
-  remove(id: string) {
-    return this.userModel
-      .deleteOne({
-        _id: id,
-      })
-      .exec();
+  async getByEmail(email: string) {
+    return await this.userModel.findOne({ email }).exec();
   }
 
   //seed

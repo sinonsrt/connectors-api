@@ -1,0 +1,9 @@
+version: "3.8"
+services:
+  godevapi-back-end:
+    container_name: godevapi-back-end
+    build:
+      dockerfile: Dockerfile
+      context: .
+    ports:
+      - "3000:3000"

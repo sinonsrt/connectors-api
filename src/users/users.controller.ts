@@ -25,8 +25,8 @@ export class UsersController {
 
   @UseGuards(JwtAuthGuard)
   @Get()
-  findAll() {
-    return this.usersService.findAll();
+  async findAll() {
+    return await this.usersService.findAll();
   }
 
   @UseGuards(JwtAuthGuard)
@@ -44,6 +44,6 @@ export class UsersController {
   @UseGuards(JwtAuthGuard)
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.usersService.remove(id);
+    return this.usersService.update(id, { deleted_at: new Date() });
   }
 }

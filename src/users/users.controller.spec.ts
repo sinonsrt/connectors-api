@@ -10,16 +10,19 @@ const usersList: User[] = [
     name: 'Go DevApi',
     email: 'godevapi1@devapi.com',
     password: '1234567',
+    deleted_at: null,
   }),
   new User({
     name: 'Go DevApi 2',
     email: 'godevapi2@devapi.com',
     password: '1234567',
+    deleted_at: null,
   }),
   new User({
     name: 'Go DevApi 3',
     email: 'godevapi3@devapi.com',
     password: '1234567',
+    deleted_at: null,
   }),
 ];
 
@@ -27,12 +30,14 @@ const newUser = new User({
   name: 'Go DevApi',
   email: 'godevapi1@devapi.com',
   password: '1234567',
+  deleted_at: null,
 });
 
-const updatedUser = new User({
+const user = new User({
   name: 'Go DevApi 2',
   email: 'godevapi2@devapi.com',
   password: '1234567',
+  deleted_at: null,
 });
 
 describe('UsersController', () => {
@@ -49,8 +54,8 @@ describe('UsersController', () => {
             create: jest.fn().mockResolvedValue(newUser),
             findAll: jest.fn().mockResolvedValue(usersList),
             findOne: jest.fn().mockResolvedValue(usersList[0]),
-            update: jest.fn().mockResolvedValue(updatedUser),
-            remove: jest.fn().mockResolvedValue(undefined),
+            update: jest.fn().mockResolvedValue(user),
+            findByIdAndUpdate: jest.fn().mockResolvedValue(user),
           },
         },
       ],
@@ -90,6 +95,7 @@ describe('UsersController', () => {
         name: 'Lucas Marchiori',
         email: 'sinonsrt3@hotmail.com',
         password: '1234567',
+        deleted_at: null,
       };
       // Act
       const result = await usersController.create(body);
@@ -105,6 +111,7 @@ describe('UsersController', () => {
         name: 'Lucas Marchiori',
         email: 'sinonsrt3@hotmail.com',
         password: '1234567',
+        deleted_at: null,
       };
       jest.spyOn(usersService, 'create').mockRejectedValueOnce(new Error());
 
@@ -146,7 +153,7 @@ describe('UsersController', () => {
       const result = await usersController.update('1', body);
 
       // Assert
-      expect(result).toEqual(updatedUser);
+      expect(result).toEqual(user);
       expect(usersService.update).toHaveBeenCalledTimes(1);
     });
 
@@ -164,22 +171,26 @@ describe('UsersController', () => {
     });
   });
 
-  describe('remove', () => {
-    it('should remove a user successfully', async () => {
+  describe('findByIdAndUpdate', () => {
+    it('should soft delete a user successfully', async () => {
       // Act
-      const result = await usersController.remove('1');
+      const result = await usersController.update('1', {
+        deleted_at: new Date(),
+      });
 
       // Assert
-      expect(result).toBeUndefined();
-      expect(usersService.remove).toHaveBeenCalledTimes(1);
+      expect(result).toEqual(user);
+      expect(usersService.update).toHaveBeenCalledTimes(1);
     });
 
     it('should throw an exception', () => {
       // Arrange
-      jest.spyOn(usersService, 'remove').mockRejectedValueOnce(new Error());
+      jest.spyOn(usersService, 'update').mockRejectedValueOnce(new Error());
 
       // Assert
-      expect(usersController.remove('1')).rejects.toThrowError();
+      expect(
+        usersController.update('1', { deleted_at: new Date() }),
+      ).rejects.toThrowError();
     });
   });
 });

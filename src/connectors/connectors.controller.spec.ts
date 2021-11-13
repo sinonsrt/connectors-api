@@ -15,6 +15,7 @@ const connectorsList: Connector[] = [
     description:
       'ContaAzul é uma plataforma online de fácil manuseio e controle financeiro para pequenos negócios.',
     status: 'ACTIVE',
+    deleted_at: null,
   }),
   new Connector({
     name: 'PicPay',
@@ -25,6 +26,7 @@ const connectorsList: Connector[] = [
     base_url: 'https://appws.picpay.com/ecommerce/public',
     privacy: 'PUBLIC',
     type: 'REST',
+    deleted_at: null,
   }),
   new Connector({
     name: 'Cielo Ecommerce',
@@ -37,6 +39,7 @@ const connectorsList: Connector[] = [
     base_url: 'https://api.cieloecommerce.cielo.com.br/1',
     privacy: 'PUBLIC',
     type: 'REST',
+    deleted_at: null,
   }),
 ];
 
@@ -50,9 +53,10 @@ const newConnector = new Connector({
   description:
     'ContaAzul é uma plataforma online de fácil manuseio e controle financeiro para pequenos negócios.',
   status: 'ACTIVE',
+  deleted_at: null,
 });
 
-const updatedConnector = new Connector({
+const connector = new Connector({
   name: 'Conta Azul 3',
   type: 'TEST',
   privacy: 'PRIVATE',
@@ -62,6 +66,7 @@ const updatedConnector = new Connector({
   description:
     'ContaAzul é uma plataforma online de fácil manuseio e controle financeiro para pequenos negócios.',
   status: 'ACTIVE',
+  deleted_at: null,
 });
 
 describe('ConnectorsController', () => {
@@ -79,8 +84,8 @@ describe('ConnectorsController', () => {
             create: jest.fn().mockResolvedValue(newConnector),
             findAll: jest.fn().mockResolvedValue(connectorsList),
             findOne: jest.fn().mockResolvedValue(connectorsList[0]),
-            update: jest.fn().mockResolvedValue(updatedConnector),
-            remove: jest.fn().mockResolvedValue(undefined),
+            update: jest.fn().mockResolvedValue(connector),
+            findByIdAndUpdate: jest.fn().mockResolvedValue(connector),
           },
         },
       ],
@@ -127,6 +132,7 @@ describe('ConnectorsController', () => {
         description:
           'ContaAzul é uma plataforma online de fácil manuseio e controle financeiro para pequenos negócios.',
         status: 'ACTIVE',
+        deleted_at: null,
       };
 
       const result = await connectorsController.create(body);
@@ -146,6 +152,7 @@ describe('ConnectorsController', () => {
         description:
           'ContaAzul é uma plataforma online de fácil manuseio e controle financeiro para pequenos negócios.',
         status: 'ACTIVE',
+        deleted_at: null,
       };
       jest
         .spyOn(connectorsService, 'create')
@@ -185,11 +192,12 @@ describe('ConnectorsController', () => {
         description:
           'ContaAzul é uma plataforma online de fácil manuseio e controle financeiro para pequenos negócios.',
         status: 'ACTIVE',
+        deleted_at: null,
       };
 
       const result = await connectorsController.update('1', body);
 
-      expect(result).toEqual(updatedConnector);
+      expect(result).toEqual(connector);
       expect(connectorsService.update).toHaveBeenCalledTimes(1);
     });
 
@@ -204,6 +212,7 @@ describe('ConnectorsController', () => {
         description:
           'ContaAzul é uma plataforma online de fácil manuseio e controle financeiro para pequenos negócios.',
         status: 'ACTIVE',
+        deleted_at: null,
       };
       jest
         .spyOn(connectorsService, 'update')
@@ -213,20 +222,24 @@ describe('ConnectorsController', () => {
     });
   });
 
-  describe('remove', () => {
-    it('should remove a user successfully', async () => {
-      const result = await connectorsController.remove('1');
+  describe('findByIdAndUpdate', () => {
+    it('should soft delete a user successfully', async () => {
+      const result = await connectorsController.update('1', {
+        deleted_at: new Date(),
+      });
 
-      expect(result).toBeUndefined();
-      expect(connectorsService.remove).toHaveBeenCalledTimes(1);
+      expect(result).toEqual(connector);
+      expect(connectorsService.update).toHaveBeenCalledTimes(1);
     });
 
     it('should throw an exception', () => {
       jest
-        .spyOn(connectorsService, 'remove')
+        .spyOn(connectorsService, 'update')
         .mockRejectedValueOnce(new Error());
 
-      expect(connectorsController.remove('1')).rejects.toThrowError();
+      expect(
+        connectorsController.update('1', { deleted_at: new Date() }),
+      ).rejects.toThrowError();
     });
   });
 });

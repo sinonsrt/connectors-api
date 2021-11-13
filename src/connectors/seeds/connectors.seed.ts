@@ -23,6 +23,7 @@ export class ConnectorsSeed {
         type: 'REST',
         privacy: 'PUBLIC',
         status: 'ACTIVE',
+        deleted_at: null,
       },
       {
         name: 'VTEX',
@@ -35,6 +36,7 @@ export class ConnectorsSeed {
         type: 'REST',
         privacy: 'PUBLIC',
         status: 'ACTIVE',
+        deleted_at: null,
       },
       {
         name: 'Conta Azul',
@@ -47,6 +49,7 @@ export class ConnectorsSeed {
         type: 'REST',
         privacy: 'PUBLIC',
         status: 'ACTIVE',
+        deleted_at: null,
       },
       {
         name: 'AnyMarket',
@@ -59,6 +62,7 @@ export class ConnectorsSeed {
         type: 'REST',
         privacy: 'PUBLIC',
         status: 'ACTIVE',
+        deleted_at: null,
       },
       {
         name: 'Agendor',
@@ -70,6 +74,7 @@ export class ConnectorsSeed {
         type: 'REST',
         privacy: 'PUBLIC',
         status: 'ACTIVE',
+        deleted_at: null,
       },
       {
         name: 'Cielo Ecommerce',
@@ -82,6 +87,7 @@ export class ConnectorsSeed {
         type: 'REST',
         privacy: 'PUBLIC',
         status: 'ACTIVE',
+        deleted_at: null,
       },
       {
         name: 'PicPay',
@@ -92,6 +98,7 @@ export class ConnectorsSeed {
         type: 'REST',
         privacy: 'PUBLIC',
         status: 'ACTIVE',
+        deleted_at: null,
       },
     ]);
   }

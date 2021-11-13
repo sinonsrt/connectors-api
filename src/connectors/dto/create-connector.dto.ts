@@ -7,4 +7,5 @@ export class CreateConnectorDto {
   category: string;
   description: string;
   status: string;
+  deleted_at: Date;
 }

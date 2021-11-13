@@ -14,6 +14,7 @@ export class UsersSeed {
       name: 'Go DevApi',
       email: 'godevapi@devapi.com',
       password: '1234567',
+      deleted_at: null,
     });
   }
 }
