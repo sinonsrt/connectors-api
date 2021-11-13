@@ -12,19 +12,19 @@ import {
 import { ConnectorsService } from './connectors.service';
 import { CreateConnectorDto } from './dto/create-connector.dto';
 import { UpdateConnectorDto } from './dto/update-connector.dto';
-// import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
+import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 
 @Controller('connectors')
 export class ConnectorsController {
   constructor(private readonly connectorsService: ConnectorsService) {}
 
-  // @UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAuthGuard)
   @Post()
   create(@Body() createConnectorDto: CreateConnectorDto) {
     return this.connectorsService.create(createConnectorDto);
   }
 
-  // @UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAuthGuard)
   @Get()
   findAll(
     @Query('name') name: string,
@@ -40,13 +40,13 @@ export class ConnectorsController {
     return connectors;
   }
 
-  // @UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAuthGuard)
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.connectorsService.findOne(id);
   }
 
-  // @UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAuthGuard)
   @Patch(':id')
   update(
     @Param('id') id: string,
@@ -55,7 +55,7 @@ export class ConnectorsController {
     return this.connectorsService.update(id, updateConnectorDto);
   }
 
-  // @UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAuthGuard)
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.connectorsService.remove(id);

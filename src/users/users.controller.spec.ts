@@ -7,32 +7,32 @@ import { UsersService } from './users.service';
 
 const usersList: User[] = [
   new User({
-    name: 'Lucas Marchiori',
-    email: 'sinonsrt@hotmail.com',
+    name: 'Go DevApi',
+    email: 'godevapi1@devapi.com',
     password: '1234567',
   }),
   new User({
-    name: 'Lucas Marchiori 2',
-    email: 'sinonsrt2@hotmail.com',
+    name: 'Go DevApi 2',
+    email: 'godevapi2@devapi.com',
     password: '1234567',
   }),
   new User({
-    name: 'Lucas Marchiori 3',
-    email: 'sinonsrt3@hotmail.com',
+    name: 'Go DevApi 3',
+    email: 'godevapi3@devapi.com',
     password: '1234567',
   }),
 ];
 
 const newUser = new User({
-  name: 'Lucas Marchiori',
-  email: 'sinonsrt@hotmail.com',
+  name: 'Go DevApi',
+  email: 'godevapi1@devapi.com',
   password: '1234567',
 });
 
 const updatedUser = new User({
-  name: 'Lucas Marchiori 2',
-  email: 'sinonsrt2@hotmail.com',
-  password: '12345678',
+  name: 'Go DevApi 2',
+  email: 'godevapi2@devapi.com',
+  password: '1234567',
 });
 
 describe('UsersController', () => {
