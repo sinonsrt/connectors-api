@@ -49,8 +49,7 @@ export class ConnectorsService {
 
   //seed
   async add(data: any) {
-    console.log('connector added:', data);
-    const connector = await this.connectorModel.create(data);
-    connector.save();
+    console.log('Connectors added:', data);
+    await this.connectorModel.insertMany(data);
   }
 }

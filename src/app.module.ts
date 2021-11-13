@@ -4,12 +4,14 @@ import { ConnectorsModule } from './connectors/connectors.module';
 import { MongooseModule } from '@nestjs/mongoose';
 import { AuthModule } from './auth/auth.module';
 import { CommandModule } from 'nestjs-command';
+import { ConfigModule } from '@nestjs/config';
 
+ConfigModule.forRoot();
 @Module({
   imports: [
     CommandModule,
     MongooseModule.forRoot(
-      'mongodb+srv://user1:zKaCf9rvH5WSGeLQ@gocrud.copqq.mongodb.net/test',
+      `mongodb+srv://${process.env.DATABASE_USER}:${process.env.DATABASE_PASSWORD}@gocrud.copqq.mongodb.net/test`,
     ),
     UsersModule,
     ConnectorsModule,
