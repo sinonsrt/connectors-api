@@ -20,14 +20,25 @@
 
 ## Iniciado o projeto - Ordem de comandos(Executar comandos em ordem para inicio do projeto)
 
-### 1° - SCRIPT para população das informações de Connectors(Conectores)
+### 1° - Para realizar a instalação das dependências da aplicação
+- install
+- npm install ou yarn install
+
+### 2° - SCRIPT para população das informações de Connectors(Conectores)
 - npx nestjs-command create:connector
 
-### 2° - SCRIPT para população das informações de Users(Usuário)
+### 3° - SCRIPT para população das informações de Users(Usuário)
 - npx nestjs-command create:user
 
-### 3° - Para iniciar o servidor (YARN ou NPM)
+## Para iniciar o servidor 
+
+### Para iniciar o servidor em sua máquina local (YARN ou NPM)
 - start
+- exemplo: yarn start ou npm start
+
+### Caso deseje realizar a criação de uma imagem e subir um container através do Docker (Docker)
+- docker-compose up
+
 #### Exemplo: yarn start ou npm start 
 
 ### Para ter acesso as requisições de users e connectores é necessário passar pela autenticação, utilizando o usuário padrão que foi criado através do script para a criação de um usuário padrão
