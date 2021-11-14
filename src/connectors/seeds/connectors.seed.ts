@@ -65,14 +65,17 @@ export class ConnectorsSeed {
         deleted_at: null,
       },
       {
-        name: 'Agendor',
+        name: 'Trello',
         description:
-          'Software de CRM para empresas que fazem vendas consultivas com vendedores internos e externos.',
-        logo_url: 'https://devapi.com.br/static/images/connectors/agendor.png',
-        base_url: 'https://api.agendor.com.br/v3/',
-        category: 'CRM',
+          'O Trello é uma ferramenta de colaboração que organiza seus projetos em painéis. À primeira vista, saiba o que está sendo trabalhado, quem está trabalhando no quê e onde algo está em processo.',
+        logo_url: 'https://devapi.com.br/static/images/connectors/trello.png',
+        base_url: 'https://api.trello.com/1',
+        category: {
+          id: '606212ea3f2727a3f876dc0d',
+          name: 'Produtividade',
+        },
         type: 'REST',
-        privacy: 'PUBLIC',
+        privacy: 'PRIVATE',
         status: 'ACTIVE',
         deleted_at: null,
       },
