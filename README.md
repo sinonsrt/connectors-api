@@ -36,10 +36,10 @@
 - start
 - exemplo: yarn start ou npm start
 
+#### Exemplo: yarn start ou npm start 
+
 ### Caso deseje realizar a criação de uma imagem e subir um container através do Docker (Docker)
 - docker-compose up
-
-#### Exemplo: yarn start ou npm start 
 
 ### Para ter acesso as requisições de users e connectores é necessário passar pela autenticação, utilizando o usuário padrão que foi criado através do script para a criação de um usuário padrão
 - email: godevapi@devapi.com
